@@ -132,6 +132,73 @@ public:
             iSize--;
         }
     }
+     void InsertAtPos(int iValue,int iPOS)
+     {
+        PNODE newn;
+        newn=new NODE;
+        newn->data=iValue;
+        newn->next=NULL;
+         PNODE temp=Head;
+
+         if((iPOS<1)&&(iPOS>iSize))
+         {
+             return;
+         }
+         else if(iPOS==1)
+         {
+             InsertFirst(iValue);
+         }
+         else if(iPOS==iSize)
+         {
+             InsertLast(iValue);
+         }
+         else
+         {
+         for(int i=1;i<iPOS-1;i++)
+         {
+                temp=temp->next;
+         }
+         newn->next=temp->next;
+         temp->next=newn;
+
+       iSize++;
+         }
+
+     }
+
+     void DeleteAtPos(int iPOS)
+     {
+          PNODE temp=Head;
+          PNODE target=NULL;
+         if((iPOS<1)&&(iPOS>iSize))
+         {
+             return;
+         }
+         else if(iPOS==1)
+         {
+             DeleteFirst();
+         }
+         else if(iPOS==iSize)
+         {
+             DeleteLast();
+         }
+         else
+         {
+         for(int i=1;i<iPOS-1;i++)
+         {
+                temp=temp->next;
+         }
+         target=temp->next;
+         target=temp->next;
+         temp->next=target->next;
+         delete(target);
+
+       iSize--;
+         }
+
+
+     }
+
 };
 
 int main()
@@ -172,7 +239,7 @@ int main()
                 cin>>iValue;
                 cout<<"Enter position\n";
                 cin>>iPos;
-                //obj.InsertAtPos(iValue,iPos);
+                obj.InsertAtPos(iValue,iPos);
                 break;
                 
             case 4 :
@@ -186,7 +253,7 @@ int main()
             case 6:
                 cout<<"Enter the position\n";
                 cin>>iPos;
-               // obj.DeleteAtPos(iPos);
+               obj.DeleteAtPos(iPos);
                 break;
                 
             case 7:
